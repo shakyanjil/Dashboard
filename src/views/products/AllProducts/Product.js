@@ -4,6 +4,8 @@ import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import axios from "axios";
 
+import productData from "./productData"; /* this is from productData json file */
+
 const Product = ({ match }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -34,21 +36,23 @@ const Product = ({ match }) => {
     <CRow>
       <CCol lg={6}>
         <CCard>
-          <CCardHeader>User id: {match.params.id}</CCardHeader>
+          <CCardHeader>Product Id: {match.params.id}</CCardHeader>
           <CCardBody>
             <table className="table table-striped table-hover">
               <tbody>
                 {productDetails.map(([key, value], index) => {
                   return key !== "image" ? (
                     <tr key={index.toString()}>
-                      <td>{`${key}:`}</td>
                       <td>
-                        <strong>{value}</strong>
+                        <strong>{`${key}:`}</strong>
                       </td>
+                      <td>{value}</td>
                     </tr>
                   ) : (
                     <tr key={index.toString()}>
-                      <td>{`${key}:`}</td>
+                      <td>
+                        <strong>{`${key}:`}</strong>
+                      </td>
                       <td>
                         <img
                           src={value}
@@ -67,7 +71,8 @@ const Product = ({ match }) => {
       </CCol>
       <CCol>
         <h1>image:</h1>
-        <img src="" alt="" />
+
+        <img src="" alt="no image" />
       </CCol>
     </CRow>
   );
