@@ -8,6 +8,3 @@ const ProductsData = async () => {
   return data;
 };
 export default ProductsData;
-// module.exports = {
-//   ProductsData,
-// };

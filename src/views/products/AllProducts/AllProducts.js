@@ -11,11 +11,15 @@ import { useHistory } from "react-router";
 import "./allproducts.css";
 
 import productData from "./productData";  /* this is form productData json file*/ 
+import { CDataTable } from "@coreui/react";
 
 
 function AllProducts() {
 
-
+let men=0;
+let women=0;
+let electronics=0;
+let jewelery=0;
 
 
   const [data, setData] = useState([]);
@@ -46,7 +50,7 @@ const history = useHistory()
 
 
 
-{/* <CDataTable
+ {/* <CDataTable
             items={data}
             fields={[
               { key: 'id', },
@@ -59,7 +63,8 @@ const history = useHistory()
             clickableRows
             onRowClick={(item) => history.push(`/users/${item.id}`)}
            
-          /> */}
+          /> 
+*/}
 
 {/* ---------------------------------------------------- OUR DATA TABLE --------------------------------------------------------------*/}
 
@@ -67,7 +72,6 @@ const history = useHistory()
       <table id="example" className="display responsive nowrap">
         <thead>
           <tr>
-         
             <th>Id</th>
             <th>Name</th>
             <th>Price</th>
@@ -77,6 +81,19 @@ const history = useHistory()
         </thead>
         <tbody>
           {data.map((data,key) => {
+            if(data.category == 'men clothing'){
+              men++;
+            } 
+            else if(data.category == 'women clothing'){
+              women++;
+            } 
+            else if(data.category == 'electronics'){
+              electronics++;
+            } 
+            else if(data.category == 'jewelery'){
+              jewelery++;
+            } 
+            
             return (
               <tr id="itemrow"           
               onClick={() => history.push(`/products/${data.id}`)}
@@ -87,12 +104,17 @@ const history = useHistory()
                 <td>{data.category}</td>
                 <td><img src={data.image} height="65px" width="65px"/></td>
               </tr>
-             
             );
-          })}
+
+          }
+          
+          )
+          }
+           
         </tbody>
       </table>
     </div>
+    
   );
   
 }
